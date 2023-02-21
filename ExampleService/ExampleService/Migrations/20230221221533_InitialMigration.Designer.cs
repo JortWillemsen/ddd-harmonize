@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ExampleService.Migrations
 {
     [DbContext(typeof(ExampleContext))]
-    [Migration("20221220192207_AddEvents")]
-    partial class AddEvents
+    [Migration("20230221221533_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace ExampleService.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ExampleService.Domain.Events.Event", b =>
+            modelBuilder.Entity("ExampleService.Infrastructure.Adapters.Database.Postgres.EventEntry", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,35 +34,20 @@ namespace ExampleService.Migrations
                     b.Property<Guid>("AggregateId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Discriminator")
+                    b.Property<string>("Data")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string>("EventType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
                     b.ToTable("events", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Event");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("ExampleService.Domain.Example", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("examples", (string)null);
-                });
-
-            modelBuilder.Entity("ExampleService.Domain.Events.ExampleCreatedEvent", b =>
-                {
-                    b.HasBaseType("ExampleService.Domain.Events.Event");
-
-                    b.HasDiscriminator().HasValue("ExampleCreatedEvent");
                 });
 #pragma warning restore 612, 618
         }

@@ -8,8 +8,7 @@ namespace ExampleService.Infrastructure.Adapters.Database.Postgres;
 
 public class ExampleContext : DbContext
 {
-    public DbSet<Event> Events { get; set; }
-    public DbSet<Example> Examples { get; set; }
+    public DbSet<EventEntry> Events { get; set; }
 
     public ExampleContext(DbContextOptions options) : base(options)
     {
@@ -18,10 +17,6 @@ public class ExampleContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new EventsConfiguration());
-        modelBuilder.ApplyConfiguration(new ExampleConfiguration());
-
-        modelBuilder.Entity<ExampleCreatedEvent>();
-        modelBuilder.Entity<NameChangedEvent>();
 
         base.OnModelCreating(modelBuilder);
     }

@@ -22,7 +22,7 @@ namespace ExampleService.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ExampleService.Domain.Events.Event", b =>
+            modelBuilder.Entity("ExampleService.Infrastructure.Adapters.Database.Postgres.EventEntry", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,10 +31,11 @@ namespace ExampleService.Migrations
                     b.Property<Guid>("AggregateId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CorrelationId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("Data")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<string>("Discriminator")
+                    b.Property<string>("EventType")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -44,43 +45,6 @@ namespace ExampleService.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("events", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Event");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("ExampleService.Domain.Example", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("examples", (string)null);
-                });
-
-            modelBuilder.Entity("ExampleService.Domain.Events.ExampleCreatedEvent", b =>
-                {
-                    b.HasBaseType("ExampleService.Domain.Events.Event");
-
-                    b.HasDiscriminator().HasValue("ExampleCreatedEvent");
-                });
-
-            modelBuilder.Entity("ExampleService.Domain.Events.NameChangedEvent", b =>
-                {
-                    b.HasBaseType("ExampleService.Domain.Events.Event");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasDiscriminator().HasValue("NameChangedEvent");
                 });
 #pragma warning restore 612, 618
         }

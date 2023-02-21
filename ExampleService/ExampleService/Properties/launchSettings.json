@@ -26,7 +26,7 @@
         "Wrappit_Port": "5672",
         "Wrappit_UserName": "guest",
         "Wrappit_Password": "guest",
-        "Wrappit_ExchangeName": "SCSS",
+        "Wrappit_ExchangeName": "Exchange",
         "Wrappit_QueueName": "Example.Queue"
       }
     },

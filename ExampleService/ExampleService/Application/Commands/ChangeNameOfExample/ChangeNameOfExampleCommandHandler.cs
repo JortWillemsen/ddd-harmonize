@@ -19,7 +19,7 @@ public class ChangeNameOfExampleCommandHandler : BaseCommandHandler<ChangeNameOf
 
     public override async Task Handle(ChangeNameOfExampleCommand command)
     {
-        var entity = await _repository.FindByIdSourced(command.Id);
+        var entity = await _repository.FindByAggregateId(command.Id);
         entity.ChangeName(command);
 
         await _repository.Update(entity);

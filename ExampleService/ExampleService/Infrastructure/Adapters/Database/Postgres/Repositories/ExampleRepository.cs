@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExampleService.Infrastructure.Adapters.Database.Postgres.Repositories;
 
-public class ExampleRepository : IExampleRepository
+public class ExampleRepository : BaseRepository, IExampleRepository
 {
     private readonly ExampleContext _context;
 
@@ -14,20 +14,7 @@ public class ExampleRepository : IExampleRepository
         _context = context;
     }
 
-    public async Task<Example> FindById(Guid id)
-    { 
-        var result = await _context.Examples.SingleOrDefaultAsync(e => e.Id == id);
-
-        var example = new Example();
-        if (result == null)
-        {
-            throw new NotFoundException(nameof(Example));
-        }
-        
-        return result;
-    }
-
-    public async Task<Example> FindByIdSourced(Guid id)
+    public async Task<Example> FindByAggregateId(Guid id)
     {
         var events = await _context.Events
             .Where(e => e.AggregateId == id)
@@ -37,7 +24,7 @@ public class ExampleRepository : IExampleRepository
         if (events.Count == 0)
             throw new NotFoundException(nameof(Example));
         
-        var result = new Example(events);
+        var result = new Example(DeserializeEvents(events));
 
         return result;
     }
@@ -50,7 +37,7 @@ public class ExampleRepository : IExampleRepository
         // We can just simply add the new events to the database.
         foreach (var evt in events)
         {
-            await _context.Events.AddAsync(evt);
+            await _context.Events.AddAsync(SerializeEvent(evt));
         }
 
         await _context.SaveChangesAsync();

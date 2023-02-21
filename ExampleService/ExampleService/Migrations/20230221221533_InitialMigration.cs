@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ExampleService.Migrations
 {
     /// <inheritdoc />
-    public partial class AddEvents : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,22 +17,13 @@ namespace ExampleService.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     AggregateId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Discriminator = table.Column<string>(type: "text", nullable: false)
+                    EventType = table.Column<string>(type: "text", nullable: false),
+                    Timestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Data = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_events", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "examples",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_examples", x => x.Id);
                 });
         }
 
@@ -41,9 +32,6 @@ namespace ExampleService.Migrations
         {
             migrationBuilder.DropTable(
                 name: "events");
-
-            migrationBuilder.DropTable(
-                name: "examples");
         }
     }
 }
