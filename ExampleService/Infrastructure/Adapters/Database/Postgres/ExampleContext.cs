@@ -1,5 +1,5 @@
+using Common.Events;
 using ExampleService.Domain;
-using ExampleService.Domain.Events;
 using ExampleService.Infrastructure.Adapters.Database.Postgres.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Wrappit.Messaging;

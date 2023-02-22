@@ -1,4 +1,5 @@
-﻿using DotnetCute.Exceptions.Http.Client;
+﻿using Common.Infrastructure.Database;
+using DotnetCute.Exceptions.Http.Client;
 using ExampleService.Domain;
 using ExampleService.Infrastructure.Ports.Database;
 using Microsoft.EntityFrameworkCore;

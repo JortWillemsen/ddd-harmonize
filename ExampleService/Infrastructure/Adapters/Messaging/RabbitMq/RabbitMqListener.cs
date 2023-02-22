@@ -1,5 +1,6 @@
 using System.Text.Json;
-using ExampleService.Infrastructure.Adapters.Messaging.Events.Incoming;
+using Common.Events;
+using Common.Events.ExampleService;
 using ExampleService.Infrastructure.Ports.Messaging;
 using Wrappit.Attributes;
 

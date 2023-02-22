@@ -1,4 +1,4 @@
-using ExampleService.Domain.Events;
+﻿using Common.Events.ExampleService;
 
 namespace ExampleService.Infrastructure.Ports.Messaging;
 

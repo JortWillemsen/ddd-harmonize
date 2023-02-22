@@ -1,4 +1,5 @@
-using ExampleService.Domain.Events;
+using Common.Events;
+using Common.Events.ExampleService;
 using ExampleService.Infrastructure.Ports.Messaging;
 using Wrappit.Messaging;
 

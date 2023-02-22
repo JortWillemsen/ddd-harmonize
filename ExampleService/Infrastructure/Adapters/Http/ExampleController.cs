@@ -1,6 +1,7 @@
-﻿using ExampleService.Application.Commands;
+﻿using Common.Application;
+using ExampleService.Application.Commands;
+using ExampleService.Application.Commands.ChangeNameOfExample;
 using ExampleService.Application.Commands.CreateExample;
-using ExampleService.Application.Commands.UpdateNameOfExample;
 using ExampleService.Application.Queries;
 using ExampleService.Application.Queries.FindExampleById;
 using ExampleService.Domain;

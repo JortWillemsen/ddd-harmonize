@@ -1,4 +1,6 @@
-﻿namespace ExampleService.Application.Commands.UpdateNameOfExample;
+﻿using Common.Application;
+
+namespace ExampleService.Application.Commands.ChangeNameOfExample;
 
 public class ChangeNameOfExampleCommand : ICommand
 {

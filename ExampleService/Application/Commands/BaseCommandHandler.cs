@@ -1,4 +1,5 @@
-﻿using ExampleService.Domain.Events;
+﻿using Common.Application;
+using Common.Events;
 using ExampleService.Infrastructure.Ports.Messaging;
 
 namespace ExampleService.Application.Commands;

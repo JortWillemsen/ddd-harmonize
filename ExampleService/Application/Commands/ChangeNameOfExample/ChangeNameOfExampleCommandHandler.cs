@@ -1,5 +1,5 @@
-﻿using ExampleService.Application.Commands.UpdateNameOfExample;
-using ExampleService.Domain.Events;
+﻿using Common.Application;
+using Common.Events;
 using ExampleService.Infrastructure.Ports.Database;
 using ExampleService.Infrastructure.Ports.Messaging;
 

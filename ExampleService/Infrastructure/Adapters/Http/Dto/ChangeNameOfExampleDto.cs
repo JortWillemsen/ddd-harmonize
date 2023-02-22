@@ -1,4 +1,4 @@
-﻿using ExampleService.Application.Commands.UpdateNameOfExample;
+﻿using ExampleService.Application.Commands.ChangeNameOfExample;
 
 namespace ExampleService.Infrastructure.Adapters.Http.Dto;
 

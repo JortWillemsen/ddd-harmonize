@@ -1,6 +1,6 @@
+using Common.Exceptions;
 using DotnetCute.Exceptions.Http.Client;
-using ExampleService.Application.Commands.UpdateNameOfExample;
-using ExampleService.Domain.Exceptions;
+using ExampleService.Application.Commands.ChangeNameOfExample;
 
 namespace ExampleService.Domain.BusinessRules;
 

@@ -1,8 +1,9 @@
 ﻿using System.Reflection.Metadata;
-using ExampleService.Application.Commands.UpdateNameOfExample;
+using Common.Domain;
+using Common.Events;
+using Common.Events.ExampleService;
+using ExampleService.Application.Commands.ChangeNameOfExample;
 using ExampleService.Domain.BusinessRules;
-using ExampleService.Domain.Core;
-using ExampleService.Domain.Events;
 using Wrappit.Messaging;
 
 namespace ExampleService.Domain;
