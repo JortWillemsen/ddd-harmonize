@@ -1,5 +1,6 @@
 ﻿using Common.Application;
 using Common.Events;
+using ExampleService.Domain;
 using ExampleService.Infrastructure.Ports.Database;
 using ExampleService.Infrastructure.Ports.Messaging;
 
@@ -19,7 +20,7 @@ public class ChangeNameOfExampleCommandHandler : BaseCommandHandler<ChangeNameOf
 
     public override async Task Handle(ChangeNameOfExampleCommand command)
     {
-        var entity = await _repository.FindByAggregateId(command.Id);
+        var entity = await _repository.FindByAggregateId(new ExampleId(command.Id));
         entity.ChangeName(command);
 
         await _repository.Update(entity);

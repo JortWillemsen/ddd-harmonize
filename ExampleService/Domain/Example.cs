@@ -8,24 +8,21 @@ using Wrappit.Messaging;
 
 namespace ExampleService.Domain;
 
-public class Example : AggregateRoot
+public class Example : AggregateRoot<ExampleId>
 {
-    public Guid Id { get; set; }
     public string Name { get; set; }
-
-    public Example(IEnumerable<Event> events) : base(events) { }
-    public Example()
+    
+    public Example(ExampleId id) : base(id)
     {
-        var id = Guid.NewGuid();
-        
-        Events.Add(new ExampleCreatedEvent(id));
+        RaiseEvent(new ExampleCreatedEvent(Id.Value));
     }
+    public Example(ExampleId id, IEnumerable<Event> events) : base(id, events) { }
 
     public void ChangeName(ChangeNameOfExampleCommand command)
     {
         command.NameCannotBeLongerThan10Characters();
         
-        Events.Add(new NameChangedEvent(Id, command.Name));
+        RaiseEvent(new NameChangedEvent(Id.Value, command.Name));
     }
 
     protected override void When(dynamic evt)
@@ -35,7 +32,7 @@ public class Example : AggregateRoot
 
     private void Handle(ExampleCreatedEvent evt)
     {
-        Id = evt.Id;
+        Id = new ExampleId(evt.AggregateId);
     }
 
     private void Handle(NameChangedEvent evt)

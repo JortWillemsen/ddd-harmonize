@@ -1,4 +1,5 @@
-﻿using Wrappit.Messaging;
+﻿using Common.Domain;
+using Wrappit.Messaging;
 
 namespace Common.Events;
 

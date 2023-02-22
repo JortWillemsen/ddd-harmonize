@@ -1,4 +1,6 @@
-﻿namespace Common.Events.ExampleService;
+﻿using Common.Domain;
+
+namespace Common.Events.ExampleService;
 
 public class NameChangedEvent : Event
 {

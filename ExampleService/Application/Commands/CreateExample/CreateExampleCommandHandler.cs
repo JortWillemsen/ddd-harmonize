@@ -19,7 +19,7 @@ public class CreateExampleCommandHandler : ICommandHandler<CreateExampleCommand>
 
     public async Task Handle(CreateExampleCommand command)
     {
-        var example = new Example();
+        var example = new Example(new ExampleId());
 
         await _repository.Update(example);
         PublishEvents(example.Events);

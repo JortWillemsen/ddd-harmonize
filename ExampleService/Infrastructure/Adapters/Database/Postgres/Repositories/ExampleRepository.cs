@@ -1,4 +1,5 @@
-﻿using Common.Infrastructure.Database;
+﻿using Common.Domain;
+using Common.Infrastructure.Database;
 using DotnetCute.Exceptions.Http.Client;
 using ExampleService.Domain;
 using ExampleService.Infrastructure.Ports.Database;
@@ -15,19 +16,24 @@ public class ExampleRepository : BaseRepository, IExampleRepository
         _context = context;
     }
 
-    public async Task<Example> FindByAggregateId(Guid id)
+    public async Task<Example> FindByAggregateId(Id id)
     {
         var events = await _context.Events
-            .Where(e => e.AggregateId == id)
+            .Where(e => e.AggregateId == id.Value)
             .OrderBy(e => e.Timestamp)
             .ToListAsync();
 
         if (events.Count == 0)
             throw new NotFoundException(nameof(Example));
         
-        var result = new Example(DeserializeEvents(events));
+        var result = new Example(new ExampleId(id.Value), DeserializeEvents(events));
 
         return result;
+    }
+
+    public Task<Example> FindByAggregateId(Guid id)
+    {
+        throw new NotImplementedException();
     }
 
     public async Task Update(Example example)
