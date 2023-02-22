@@ -1,0 +1,49 @@
+@startuml library-class-diagram
+
+'Declarations
+abstract class Release {
+  Title: string
+  Time: DateTime
+  AmountListened: int
+  Artist: Artist
+  Type: ReleaseType
+  Records: Record[]
+}
+
+class Record {
+  Song: Song
+  Order: Int
+}
+
+enum ReleaseType {
+  ALBUM
+  EP
+  SINGLE
+}
+
+class Song {
+  Title: string
+  AmountListened: int
+  Credits: Credits
+}
+
+class Artist {
+  Name: string
+  Oeuvre: Release[]
+}
+
+class Credits {
+  ProducedBy: Artist
+  Writtenby: Artist
+  ProducedBy: Artist
+}
+
+'Connections
+Release "1" -left- "1..*" Record : contains >
+Release -right- "1" ReleaseType : is >
+Artist "1" -left- "0..*" Release : composes >
+Record -left- "1" Song : is >  
+Song -down- "1" Credits : is made by >
+Credits -right- "1..*" Artist : contains >
+
+@enduml
