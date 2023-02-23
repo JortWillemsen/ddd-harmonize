@@ -8,6 +8,11 @@ using Wrappit.Messaging;
 
 namespace ExampleService.Domain;
 
+public class ExampleId : Id
+{
+    public ExampleId(Guid value) : base(value) { }
+}
+
 public class Example : AggregateRoot<ExampleId>
 {
     public string Name { get; set; }
