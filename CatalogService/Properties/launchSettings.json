@@ -16,7 +16,18 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7015;http://localhost:5234",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PG_HOST": "localhost",
+        "PG_PORT": "5432",
+        "PG_DATABASE": "catalog_write",
+        "PG_USER": "postgres",
+        "PG_PASS": "password",
+        "Wrappit_HostName": "localhost",
+        "Wrappit_Port": "5672",
+        "Wrappit_UserName": "guest",
+        "Wrappit_Password": "guest",
+        "Wrappit_ExchangeName": "Harmonize",
+        "Wrappit_QueueName": "Catalog.Queue"
       }
     },
     "IIS Express": {

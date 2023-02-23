@@ -2,18 +2,18 @@
 
 namespace LibraryService.Domain;
 
-public class SongId : Id
+public class SongEntityId : EntityId
 {
-    public SongId(Guid value) : base(value) { }
+    public SongEntityId(Guid value) : base(value) { }
 }
 
-public class Song : Entity<SongId>
+public class Song : Entity<SongEntityId>
 {
     private string Title { get; set; }
     private int AmountListened { get; set; }
     private Credits Credits { get; set; }
     
-    public Song(SongId id) : base(id)
+    public Song(SongEntityId entityId) : base(entityId)
     {
     }
 }

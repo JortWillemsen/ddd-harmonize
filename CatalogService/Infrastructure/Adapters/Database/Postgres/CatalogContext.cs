@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LibraryService.Infrastructure.Adapters.Database.Postgres;
 
-public class LibraryContext : DbContext
+public class CatalogContext : DbContext
 {
     public DbSet<EventEntry> Events { get; set; }
 
-    public LibraryContext(DbContextOptions options) : base(options)
+    public CatalogContext(DbContextOptions options) : base(options)
     {
     }
     

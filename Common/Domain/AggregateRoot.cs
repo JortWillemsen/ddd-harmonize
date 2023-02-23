@@ -7,7 +7,7 @@ namespace Common.Domain;
 /// https://github.com/EdwinVW/pitstop/blob/main/src/WorkshopManagementAPI/Domain/Core/AggregateRoot.cs
 /// </summary>
 /// <typeparam name="TId"></typeparam>
-public abstract class AggregateRoot<TId> : Entity<TId> where TId: Id
+public abstract class AggregateRoot<TId> : Entity<TId> where TId: EntityId
 {
     public readonly List<Event> Events;
 

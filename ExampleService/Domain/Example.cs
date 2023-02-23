@@ -8,20 +8,20 @@ using Wrappit.Messaging;
 
 namespace ExampleService.Domain;
 
-public class ExampleId : Id
+public class ExampleEntityId : EntityId
 {
-    public ExampleId(Guid value) : base(value) { }
+    public ExampleEntityId(Guid value) : base(value) { }
 }
 
-public class Example : AggregateRoot<ExampleId>
+public class Example : AggregateRoot<ExampleEntityId>
 {
     public string Name { get; set; }
     
-    public Example(ExampleId id) : base(id)
+    public Example(ExampleEntityId entityId) : base(entityId)
     {
         RaiseEvent(new ExampleCreatedEvent(Id.Value));
     }
-    public Example(ExampleId id, IEnumerable<Event> events) : base(id, events) { }
+    public Example(ExampleEntityId entityId, IEnumerable<Event> events) : base(entityId, events) { }
 
     public void ChangeName(ChangeNameOfExampleCommand command)
     {
@@ -37,7 +37,7 @@ public class Example : AggregateRoot<ExampleId>
 
     private void Handle(ExampleCreatedEvent evt)
     {
-        Id = new ExampleId(evt.AggregateId);
+        Id = new ExampleEntityId(evt.AggregateId);
     }
 
     private void Handle(NameChangedEvent evt)

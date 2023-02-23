@@ -1,0 +1,67 @@
+@startuml class_diagram
+
+'Declarations
+package CatalogService {
+    abstract class Release {
+        Entity
+        --
+        Title: string
+        Time: DateTime
+        AmountListened: int
+        Artist: Artist
+        Type: ReleaseType
+        Records: Record[] 
+    }
+    
+    class Record {
+        Value Object
+        --
+        Song: Song
+        Order: Int
+    }
+
+    enum ReleaseType {
+        ALBUM
+        EP
+        SINGLE
+    }
+
+    class Song {
+      Entity
+      --
+      Title: string
+      AmountListened: int
+      Credits: Credits
+    }
+    
+    class Artist {
+      Aggregate root
+      --
+      Name: string
+      Oeuvre: Release[]
+    }
+    
+    class Credits {
+      Value Object
+      --
+      ProducedBy: Artist
+      Writtenby: Artist
+      ProducedBy: Artist
+    }
+    
+    'Connections
+    Release "1" -left- "1..*" Record : contains >
+    Release -right- "1" ReleaseType : is >
+    Artist "1" -left- "0..*" Release : composes >
+    Record -left- "1" Song : is >  
+    Song -down- "1" Credits : is made by >
+    Credits -right- "1..*" Artist : contains >
+    
+}
+
+package LibraryService {
+    class Playlist {}
+    class _Song {}
+}
+
+@enduml

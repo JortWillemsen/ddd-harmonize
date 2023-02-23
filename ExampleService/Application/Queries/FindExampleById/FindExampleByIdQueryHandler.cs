@@ -14,6 +14,6 @@ public class FindExampleByIdQueryHandler : IQueryHandler<FindExampleByIdQuery, E
 
     public async Task<Example> Handle(FindExampleByIdQuery query)
     {
-        return await _repository.FindByAggregateId(new ExampleId(query.Id));
+        return await _repository.FindByAggregateId(new ExampleEntityId(query.Id));
     }
 }

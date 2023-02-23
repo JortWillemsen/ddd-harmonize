@@ -16,17 +16,17 @@ public class ExampleRepository : BaseRepository, IExampleRepository
         _context = context;
     }
 
-    public async Task<Example> FindByAggregateId(Id id)
+    public async Task<Example> FindByAggregateId(EntityId entityId)
     {
         var events = await _context.Events
-            .Where(e => e.AggregateId == id.Value)
+            .Where(e => e.AggregateId == entityId.Value)
             .OrderBy(e => e.Timestamp)
             .ToListAsync();
 
         if (events.Count == 0)
             throw new NotFoundException(nameof(Example));
         
-        var result = new Example(new ExampleId(id.Value), DeserializeEvents(events));
+        var result = new Example(new ExampleEntityId(entityId.Value), DeserializeEvents(events));
 
         return result;
     }

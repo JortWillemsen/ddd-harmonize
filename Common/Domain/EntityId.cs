@@ -1,10 +1,10 @@
 ﻿namespace Common.Domain;
 
-public abstract class Id : ValueObject
+public abstract class EntityId : ValueObject
 {
     public Guid Value { get; }
 
-    protected Id(Guid value)
+    protected EntityId(Guid value)
     {
         Value = value;
     }

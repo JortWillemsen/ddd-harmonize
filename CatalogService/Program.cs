@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 var connectionString = EnvironmentSettings.GetConnectionString();
-var options = new DbContextOptionsBuilder<LibraryContext>()
+var options = new DbContextOptionsBuilder<CatalogContext>()
     .UseNpgsql(connectionString,
         p =>
         {
@@ -20,7 +20,7 @@ var options = new DbContextOptionsBuilder<LibraryContext>()
         })
     .Options;
 
-builder.Services.AddTransient(_ => new LibraryContext(options));
+builder.Services.AddTransient(_ => new CatalogContext(options));
 
 builder.Services.AddWrappit();
 builder.Services.AddControllers();
@@ -30,7 +30,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 using var scope = app.Services.CreateScope();
-var dbContext = scope.ServiceProvider.GetService<LibraryContext>();
+var dbContext = scope.ServiceProvider.GetService<CatalogContext>();
 dbContext?.Database.Migrate();
 dbContext?.Database.EnsureCreated();
 
