@@ -1,0 +1,38 @@
+{
+  "name": "harmonize-frontend",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@astrojs/react": "^2.1.0",
+    "@types/react": "^18.0.29",
+    "@types/react-dom": "^18.0.11",
+    "astro": "^2.1.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.60.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.21.0",
+    "@storybook/addon-essentials": "^7.0.0-rc.8",
+    "@storybook/addon-interactions": "^7.0.0-rc.8",
+    "@storybook/addon-links": "^7.0.0-rc.8",
+    "@storybook/addon-mdx-gfm": "^7.0.0-rc.8",
+    "@storybook/blocks": "^7.0.0-rc.8",
+    "@storybook/react": "^7.0.0-rc.8",
+    "@storybook/react-vite": "^7.0.0-rc.8",
+    "@storybook/testing-library": "^0.0.14-next.1",
+    "prop-types": "^15.8.1",
+    "storybook": "^7.0.0-rc.8"
+  }
+}
